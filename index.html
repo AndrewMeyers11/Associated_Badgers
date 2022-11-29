@@ -1,0 +1,159 @@
+<!--Associated Badgers : Group 1 -->
+<!--Leah Theusch-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Associated Badger's Modeling Interface</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+<style>
+</style>
+
+<body>
+
+<div class="head">
+ <img src="ABLogo.png" alt="Associated Bank Logo"> 
+ <hr>
+ <h1>AB Machine Model Visualization </h1>
+ <p>Enter the proper information below to add customer to modeling database and to reflect the changes.</p>
+</div>
+
+<div class="body">
+    <div class="leftpane">
+        <h2> Insert new customer information below: </h2>
+        <form>
+          <label for="name">Full Name:</label>
+
+            <div class="form-row">
+              <div class="col">
+                <input type="text" class="form-control" id="userFirst" placeholder="First name">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" id="userLast" placeholder="Last name">
+              </div>
+            </div>
+
+            <label>Address:</label>
+
+            <div class="form-row">
+              <div class="col">
+                <input type="text" class="form-control" id="userAddress" placeholder="Address">
+             </div>
+              <div class="col">
+                <input type="text" class="form-control" id="userState" placeholder="State">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" id="userZipcode" placeholder="Zipcode">
+              </div>
+            </div>
+
+            <br>
+
+            <label>Is there a secondary user on account?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="secondUser" id="secUserNo" value="No" checked>
+              <label class="form-check-label" for="exampleRadios1">
+                No
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="secondUser" id="secUserYes" value="Yes">
+              <label class="form-check-label" for="exampleRadios2">
+                Yes
+              </label>
+
+              <div id="hide" style="display: none;">
+                <label for="name">Full Name:</label>
+
+            <div class="form-row">
+              <div class="col">
+                <input type="text" class="form-control"  id="secUserFirst" placeholder="First name">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" id="secUserLast" placeholder="Last name">
+              </div>
+            </div>
+
+            <label>Address:</label>
+
+            <div class="form-row">
+              <div class="col">
+                <input type="text" class="form-control" id="secAddress" placeholder="Address ">
+             </div>
+              <div class="col">
+                <input type="text" class="form-control" id="secState" placeholder="State">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" id="secZip" placeholder="Zipcode">
+              </div>
+            </div>
+
+              </div>
+
+              <script>
+                const box = document.getElementById('hide');
+
+                function handleRadioClick() {
+                  if (document.getElementById('secUserYes').checked) {
+                    box.style.display = 'block';
+                  } else {
+                    box.style.display = 'none';
+                  }
+                }
+
+                const radioButtons = document.querySelectorAll('input[name="secondUser"]');
+                radioButtons.forEach(radio => {
+                  radio.addEventListener('click', handleRadioClick);
+                });
+              </script>
+              
+            </div>
+        </form>
+        <br>
+        <center>       
+           <button type="button" onClick="Validate()">Add Information</button>
+        </center>
+    </div>
+
+    <script>
+      function Validate(){
+      var userFName = document.getElementById("userFirst").value;
+      var userLName = document.getElementById("userLast").value;
+      var userAddress = document.getElementById("userAddress").value;
+      var userState = document.getElementById("userState").value;
+      var userZip = document.getElementById("userZipcode").value;
+
+      var secFName = document.getElementById("secUserFirst").value;
+      var secLName = document.getElementById("secUserLast").value;
+      var secAddress = document.getElementById("secAddress").value;
+      var secState = document.getElementById("secState").value;
+      var secZip = document.getElementById("secZip").value; 
+    //url to snowflake or tableau 
+
+      var url = "'";
+
+    // POST request to database with info above 
+      
+
+      }
+    </script>
+
+
+    <div class="rightpane">
+        <center>
+          <!--filler until model can be inputted-->
+          <img src="graph.png" id="graph" alt="AB visualization model" width="90%" height="100%">
+        </center>
+        <!-- Here is where the tableau feature would go-->
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
