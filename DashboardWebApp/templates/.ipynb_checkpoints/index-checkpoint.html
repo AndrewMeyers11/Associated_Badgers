@@ -8,7 +8,7 @@
 <title>Associated Badger's Modeling Interface</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="localStylesheet" href="../styles/main.css">
+<link rel="localStylesheet" href="../static/styles/main.css">
 <style>
 </style>
 
@@ -92,24 +92,7 @@
             </div>
 
               </div>
-
-              <script>
-                const box = document.getElementById('hide');
-
-                function handleRadioClick() {
-                  if (document.getElementById('secUserYes').checked) {
-                    box.style.display = 'block';
-                  } else {
-                    box.style.display = 'none';
-                  }
-                }
-
-                const radioButtons = document.querySelectorAll('input[name="secondUser"]');
-                radioButtons.forEach(radio => {
-                  radio.addEventListener('click', handleRadioClick);
-                });
-              </script>
-              
+              <script src="../static/scripts/secondaryUser.js" type="text/javascript"></script>
             </div>
         </form>
         <br>
@@ -118,29 +101,7 @@
         </center>
     </div>
 
-    <script>
-      function Validate(){
-      var userFName = document.getElementById("userFirst").value;
-      var userLName = document.getElementById("userLast").value;
-      var userAddress = document.getElementById("userAddress").value;
-      var userState = document.getElementById("userState").value;
-      var userZip = document.getElementById("userZipcode").value;
-
-      var secFName = document.getElementById("secUserFirst").value;
-      var secLName = document.getElementById("secUserLast").value;
-      var secAddress = document.getElementById("secAddress").value;
-      var secState = document.getElementById("secState").value;
-      var secZip = document.getElementById("secZip").value; 
-    //url to snowflake or tableau 
-
-      var url = "'";
-
-    // POST request to database with info above 
-      
-
-      }
-    </script>
-
+    <script src="../static/scripts/validate.js" type="text/javascript"></script>
 
     <div class="rightpane">
         <center>
