@@ -18,7 +18,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
 
-from config import snowflake_conn_prop
+from .config import snowflake_conn_prop
 from snowflake.snowpark import version
 
 sour_table_name = 'XURAN_TABLE'

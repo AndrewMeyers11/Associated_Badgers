@@ -52,13 +52,13 @@ def home():
                 return redirect(url_for('inputInvalid'))
 
         # Run first User through the model
-        register.register(userOneFName, userOneLName, userOneStreet, userOneApt, (userOneCity +
-                          ' ' + userOneState + ' ' + userOneZip), userOneCity, userOneState, userOneZip)
+        # register.register(userOneFName, userOneLName, userOneStreet, userOneApt, (userOneCity +
+        #                   ' ' + userOneState + ' ' + userOneZip), userOneCity, userOneState, userOneZip)
 
         # Run second user through the model(if applicable)
-        if secUserChecked == 'Yes':
-            register.register(userTwoFName, userTwoLName, userTwoStreet, userTwoApt, (userTwoCity +
-                                                                                      ' ' + userTwoState + ' ' + userTwoZip), userTwoCity, userTwoState, userTwoZip)
+        #if secUserChecked == 'Yes':
+            # register.register(userTwoFName, userTwoLName, userTwoStreet, userTwoApt, (userTwoCity +
+            #                                                                           ' ' + userTwoState + ' ' + userTwoZip), userTwoCity, userTwoState, userTwoZip)
 
         return ("registered")
 
@@ -81,3 +81,6 @@ if __name__ == '__main__':
 # To run the app:
 #   python3 application.py (runs continuously until you kill w/ ctrl+C)
 #   http://<YOUR_IP or localhost>:5000
+#
+#   NOTE: You need to be running python 3.8.  You should make a virtual environment that uses python 3.8 and then use pip to install all of the necessary packages
+#           This requirement comes from SnowPark
