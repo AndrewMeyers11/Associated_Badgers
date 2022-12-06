@@ -1,3 +1,5 @@
+// Unused script since this is all handled by Flask
+
 function Validate() {
     var userFName = document.getElementById("userFirst").value;
     var userLName = document.getElementById("userLast").value;
