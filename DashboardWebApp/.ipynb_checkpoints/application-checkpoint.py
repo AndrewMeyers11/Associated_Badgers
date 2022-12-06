@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import logging
 import sys
 
@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 logging.basicConfig(level = logging.DEBUG)
 
-@app.route('/')
+@app.route('/', methods=["POST", "GET"])
 def home():
     # Debugging reference notes
     # app.logger.warning('testing warning log')
