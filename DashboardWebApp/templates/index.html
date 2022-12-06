@@ -24,15 +24,15 @@
 <div class="body">
     <div class="leftpane">
         <h2> Insert new customer information below: </h2>
-        <form>
+        <form method = POST>
           <label for="name">Full Name:</label>
 
             <div class="form-row">
               <div class="col">
-                <input type="text" class="form-control" id="userFirst" placeholder="First name" name="userOneFirstName">
+                <input type="text" class="form-control" id="userFirst" placeholder="First name" name="userOneFName">
               </div>
               <div class="col">
-                <input type="text" class="form-control" id="userLast" placeholder="Last name" name="userOneLastName">
+                <input type="text" class="form-control" id="userLast" placeholder="Last name" name="userOneLName">
               </div>
             </div>
 
@@ -40,7 +40,7 @@
 
             <div class="form-row">
               <div class="col">
-                <input type="text" class="form-control" id="userAddress" placeholder="Address" name="userOneAddress">
+                <input type="text" class="form-control" id="userAddress" placeholder="Address" name="userOneAddr">
              </div>
               <div class="col">
                 <input type="text" class="form-control" id="userState" placeholder="State" name="userOneState">
@@ -70,10 +70,10 @@
 
             <div class="form-row">
               <div class="col">
-                <input type="text" class="form-control"  id="secUserFirst" placeholder="First name" name="secondUserFirstName">
+                <input type="text" class="form-control"  id="secUserFirst" placeholder="First name" name="userTwoFName">
               </div>
               <div class="col">
-                <input type="text" class="form-control" id="secUserLast" placeholder="Last name" name="secondUserLastName">
+                <input type="text" class="form-control" id="secUserLast" placeholder="Last name" name="userTwoLName">
               </div>
             </div>
 
@@ -81,33 +81,31 @@
 
             <div class="form-row">
               <div class="col">
-                <input type="text" class="form-control" id="secAddress" placeholder="Address" name="SecondUserAddress">
+                <input type="text" class="form-control" id="secAddress" placeholder="Address" name="userTwoAddr">
              </div>
               <div class="col">
-                <input type="text" class="form-control" id="secState" placeholder="State" name="SecondUserState">
+                <input type="text" class="form-control" id="secState" placeholder="State" name="userTwoState">
               </div>
               <div class="col">
-                <input type="text" class="form-control" id="secZip" placeholder="Zipcode" name="SecondUserZip">
+                <input type="text" class="form-control" id="secZip" placeholder="Zipcode" name="userTwoZip">
               </div>
             </div>
 
               </div>
               <script src="../static/scripts/secondaryUser.js" type="text/javascript"></script>
             </div>
+            <div style="text-align: center">
+              <button type="submit">Add Information</button>
+            </div>
         </form>
         <br>
-        <center>       
-           <button type="button" onClick="Validate()">Add Information</button>
-        </center>
     </div>
 
     <script src="../static/scripts/validate.js" type="text/javascript"></script>
 
-    <div class="rightpane">
-        <center>
+    <div class="rightpane" style="text-align: center">
           <!--filler until model can be inputted-->
           <img src="../static/graphs/graph.png" id="graph" alt="AB visualization model" width="90%" height="100%">
-        </center>
         <!-- Here is where the tableau feature would go-->
     </div>
 </div>
