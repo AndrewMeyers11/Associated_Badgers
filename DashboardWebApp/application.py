@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for
 import logging
 import sys
 from services import register
+import pandas as pd
 
 
 app = Flask(__name__)
@@ -51,16 +52,18 @@ def home():
             if not userTwoFName or not userTwoLName or not userTwoStreet or not userTwoCity or not userTwoState or not userTwoZip:
                 return redirect(url_for('inputInvalid'))
 
+        updatedDf = pd.DataFrame()
+
         # Run first User through the model
-        # register.register(userOneFName, userOneLName, userOneStreet, userOneApt, (userOneCity +
-        #                   ' ' + userOneState + ' ' + userOneZip), userOneCity, userOneState, userOneZip)
+        updatedDf = register.addDashboardUser(userOneFName, userOneLName, userOneStreet, userOneApt, (userOneCity +
+                          ' ' + userOneState + ' ' + userOneZip), userOneCity, userOneState, userOneZip)
 
         # Run second user through the model(if applicable)
-        #if secUserChecked == 'Yes':
-            # register.register(userTwoFName, userTwoLName, userTwoStreet, userTwoApt, (userTwoCity +
-            #                                                                           ' ' + userTwoState + ' ' + userTwoZip), userTwoCity, userTwoState, userTwoZip)
+        if secUserChecked == 'Yes':
+            updatedDf = register.addDashboardUser(userTwoFName, userTwoLName, userTwoStreet, userTwoApt, (userTwoCity +
+                                                                                      ' ' + userTwoState + ' ' + userTwoZip), userTwoCity, userTwoState, userTwoZip)
 
-        return ("registered")
+        return (updatedDf.to_html())
 
     elif request.method == 'GET':
         with open("./templates/index.html") as f:

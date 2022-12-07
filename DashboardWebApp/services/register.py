@@ -1,3 +1,5 @@
+import os
+
 from snowflake.snowpark.session import Session
 from snowflake.snowpark import functions as F
 from snowflake.snowpark.types import *
@@ -63,7 +65,7 @@ def register(firstName, lastName, addressLine1, addressLine2, addressLine3, city
         str(row["P2_ADDRESS_LINE_1"])), axis=1).map(str)
     data["P2_ADDRESS_LINE_3"] = data.apply(lambda row: encode(
         str(row["P2_ADDRESS_LINE_3"])), axis=1).map(str)
-    with open('model.pkl', 'rb') as in_strm:
+    with open('./services/model.pkl', 'rb') as in_strm:
         model = dill.load(in_strm)
 
     pred = model.predict_proba(data)[:, 1]
@@ -149,3 +151,16 @@ def find(contact_ID):
     session = Session.builder.configs(snowflake_conn_prop).create()
     return [session.table(sour_table_name).toPandas()[contact_ID-1],
             session.table(dest_table_name).toPandas()[contact_ID-1]]
+
+
+def addDashboardUser(firstName, lastName, addressLine1, addressLine2, addressLine3, city, state, zipCode):
+    # 0 - no family
+    # 1 - family
+    predictionCode = register(firstName, lastName, addressLine1, addressLine2, addressLine3, city, state, zipCode)
+
+    # Create session,  get the source table(Xuran Table),  and return pandas df
+    session = Session.builder.configs(snowflake_conn_prop).create()
+    raw = session.table(sour_table_name)
+    data=raw.toPandas()
+    return(data)
+
