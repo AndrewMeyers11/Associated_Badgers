@@ -1,5 +1,3 @@
-import os
-
 from snowflake.snowpark.session import Session
 from snowflake.snowpark import functions as F
 from snowflake.snowpark.types import *
@@ -67,7 +65,7 @@ def register(firstName, lastName, addressLine1, addressLine2, addressLine3, city
         str(row["P2_ADDRESS_LINE_3"])), axis=1).map(str)
     with open('./services/model.pkl', 'rb') as in_strm:
         model = dill.load(in_strm)
-
+    
     pred = model.predict_proba(data)[:, 1]
     predictions = [round(value) for value in pred]
     if 0 not in predictions:
