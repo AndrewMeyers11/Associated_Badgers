@@ -6,6 +6,7 @@ import pandas as pd
 
 
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -21,49 +22,60 @@ def home():
 
     # Add Info button clicked
     if request.method == 'POST':
+        if request.form['submit_button'] == "Add":
 
-        # Get user one input
-        userOneFName = request.form['userOneFName']
-        userOneLName = request.form['userOneLName']
-        userOneStreet = request.form['userOneStreet']
-        userOneApt = request.form['userOneApt']
-        userOneCity = request.form['userOneCity']
-        userOneState = request.form['userOneState']
-        userOneZip = request.form['userOneZip']
+            # Get user one input
+            userOneFName = request.form['userOneFName']
+            userOneLName = request.form['userOneLName']
+            userOneStreet = request.form['userOneStreet']
+            userOneApt = request.form['userOneApt']
+            userOneCity = request.form['userOneCity']
+            userOneState = request.form['userOneState']
+            userOneZip = request.form['userOneZip']
 
-        # Check validity of the input for user one, redirect to err if faulty
-        if not userOneFName or not userOneLName or not userOneStreet or not userOneCity or not userOneState or not userOneZip:
-            return redirect(url_for('inputInvalid'))
-
-        # Check if second user is specified
-        secUserChecked = request.form['secondUser']
-
-        # Get user Two Input
-        if secUserChecked == 'Yes':
-            userTwoFName = request.form['userTwoFName']
-            userTwoLName = request.form['userTwoLName']
-            userTwoStreet = request.form['userTwoStreet']
-            userTwoApt = request.form['userTwoApt']
-            userTwoCity = request.form['userTwoCity']
-            userTwoState = request.form['userTwoState']
-            userTwoZip = request.form['userTwoZip']
-
-            # Check validity of the input for user two, redirect to err if faulty
-            if not userTwoFName or not userTwoLName or not userTwoStreet or not userTwoCity or not userTwoState or not userTwoZip:
+            # Check validity of the input for user one, redirect to err if faulty
+            if not userOneFName or not userOneLName or not userOneStreet or not userOneCity or not userOneState or not userOneZip:
                 return redirect(url_for('inputInvalid'))
 
-        updatedDf = pd.DataFrame()
+            # Check if second user is specified
+            secUserChecked = request.form['secondUser']
 
-        # Run first User through the model
-        updatedDf = register.addDashboardUser(userOneFName, userOneLName, userOneStreet, userOneApt, (userOneCity +
-                          ' ' + userOneState + ' ' + userOneZip), userOneCity, userOneState, userOneZip)
+            # Get user Two Input
+            if secUserChecked == 'Yes':
+                userTwoFName = request.form['userTwoFName']
+                userTwoLName = request.form['userTwoLName']
+                userTwoStreet = request.form['userTwoStreet']
+                userTwoApt = request.form['userTwoApt']
+                userTwoCity = request.form['userTwoCity']
+                userTwoState = request.form['userTwoState']
+                userTwoZip = request.form['userTwoZip']
 
-        # Run second user through the model(if applicable)
-        if secUserChecked == 'Yes':
-            updatedDf = register.addDashboardUser(userTwoFName, userTwoLName, userTwoStreet, userTwoApt, (userTwoCity +
+                # Check validity of the input for user two, redirect to err if faulty
+                if not userTwoFName or not userTwoLName or not userTwoStreet or not userTwoCity or not userTwoState or not userTwoZip:
+                    return redirect(url_for('inputInvalid'))
+
+            updatedDf = pd.DataFrame()
+
+            # Run first User through the model
+            updatedDf = register.addDashboardUser(userOneFName, userOneLName, userOneStreet, userOneApt, (userOneCity +
+                            ' ' + userOneState + ' ' + userOneZip), userOneCity, userOneState, userOneZip)
+
+            # Run second user through the model(if applicable)
+            if secUserChecked == 'Yes':
+                updatedDf = register.addDashboardUser(userTwoFName, userTwoLName, userTwoStreet, userTwoApt, (userTwoCity +
                                                                                       ' ' + userTwoState + ' ' + userTwoZip), userTwoCity, userTwoState, userTwoZip)
 
-        return (updatedDf.to_html())
+            return (updatedDf.to_html())
+
+        if request.form['submit_button'] == "Remove":
+            # insert remove code here
+            # only need contact_id to remove user not sure how we want to display that
+            pass
+
+        if request.form['submit_button'] == "Lookup":
+            # insert lookup code here
+            # only need contact_id to find user as well
+            pass
 
     elif request.method == 'GET':
         with open("./templates/index.html") as f:
