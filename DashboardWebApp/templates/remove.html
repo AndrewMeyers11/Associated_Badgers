@@ -15,23 +15,23 @@
 <body>
 
 <div class="head">
-  <img src="../static/images/ABLogo.png" alt="Associated Bank Logo"> 
-  <hr>
+    <img src="../static/images/ABLogo.png" alt="Associated Bank Logo"> 
+    <hr>
  <h1>AB Machine Model Visualization </h1>
- <p>Enter the proper information below to lookup customer to modeling database and to reflect the changes.</p>
+ <p>Enter the proper information below to remove customer to modeling database and to reflect the changes.</p>
 </div>
 
 <div class="body">
     <div class="leftpane" style="margin: 1%">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Add</a>
+          <a class="nav-link" aria-current="page" href="index.html">Add</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="remove.html">Remove</a>
+          <a class="nav-link active" href="remove.html">Remove</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="lookup.html">Lookup</a>
+          <a class="nav-link " href="lookup.html">Lookup</a>
         </li>
       </ul>
 
@@ -51,22 +51,22 @@
             <label>Address:</label>
 
             <div class="form-row">
-              <div class="col">
-                <input type="text" class="form-control" id="userAddress" placeholder="Street No./Name" name="userOneStreet">
+                <div class="col">
+                  <input type="text" class="form-control" id="userAddress" placeholder="Street No./Name" name="userOneStreet">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Apt No.(if applicable)" name="userOneApt">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="userState" placeholder="City" name="userOneCity">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="userState" placeholder="State(abbrev.)" name="userOneState">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="userZipcode" placeholder="Zipcode" name="userOneZip">
+                </div>
               </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="Apt No.(if applicable)" name="userOneApt">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" id="userState" placeholder="City" name="userOneCity">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" id="userState" placeholder="State(abbrev.)" name="userOneState">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" id="userZipcode" placeholder="Zipcode" name="userOneZip">
-              </div>
-            </div>
 
             <br>
 
@@ -98,29 +98,30 @@
             <label>Address:</label>
 
             <div class="form-row">
-              <div class="col">
-                <input type="text" class="form-control" id="userAddress" placeholder="Street No./Name" name="userOneStreet">
+                <div class="col">
+                  <input type="text" class="form-control" id="userAddress" placeholder="Street No./Name" name="userOneStreet">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Apt No.(if applicable)" name="userOneApt">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="userState" placeholder="City" name="userOneCity">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="userState" placeholder="State(abbrev.)" name="userOneState">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="userZipcode" placeholder="Zipcode" name="userOneZip">
+                </div>
               </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="Apt No.(if applicable)" name="userOneApt">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" id="userState" placeholder="City" name="userOneCity">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" id="userState" placeholder="State(abbrev.)" name="userOneState">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" id="userZipcode" placeholder="Zipcode" name="userOneZip">
-              </div>
-            </div>
+
               </div>
 
             </div>
         </form>
         <br>
         <center>       
-           <button type="submit">Lookup Information</button>
+           <button type="submit">Remove Information</button>
         </center>
     </div>
     <script>
