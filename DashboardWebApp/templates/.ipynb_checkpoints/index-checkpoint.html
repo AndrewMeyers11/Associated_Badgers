@@ -22,7 +22,7 @@
 </div>
 
 <div class="body">
-    <div>
+    <div class="leftpane">
         <h2> Insert customer information below: </h2>
         <form method = POST>
           <label for="name">Full Name:</label>
@@ -107,15 +107,14 @@
               <script src="../static/scripts/secondaryUser.js" type="text/javascript"></script>
             </div>
             <div style="text-align: center">
-              <button type="submit", value="Add", name="submit_button">Add</button>
-              <button type="submit", value="Remove", name="submit_button">Remove</button>
-              <button type="submit", value="Lookup", name="submit_button">Lookup</button>
-              <button type="submit", value="Lookup", name="submit_button">Update</button>
+              <button type="submit", value="Add", name="submit_button">Add Customer</button>
+              <button type="submit", value="Remove", name="submit_button">Remove Customer</button>
+              <button type="submit", value="Lookup", name="submit_button">Lookup Customer</button>
             </div>
         </form>
         <br>
     </div>
-    <div> {{ DATA_FRAME_OUTPUT|safe }} </div>
+    <div class="rightpane"> {{DATA_FRAME_OUTPUT}} </div>
 
     <!-- <script src="../static/scripts/validate.js" type="text/javascript"></script> -->
 

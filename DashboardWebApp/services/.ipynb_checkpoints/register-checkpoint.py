@@ -162,14 +162,3 @@ def addDashboardUser(firstName, lastName, addressLine1, addressLine2, addressLin
     data=raw.toPandas()
     return(data)
 
-def addDashboardUser(firstName, lastName, addressLine1, addressLine2, addressLine3, city, state, zipCode):
-    # 0 - no family
-    # 1 - family
-    predictionCode = register(firstName, lastName, addressLine1, addressLine2, addressLine3, city, state, zipCode)
-
-    # Create session,  get the source table(Xuran Table),  and return pandas df
-    session = Session.builder.configs(snowflake_conn_prop).create()
-    raw = session.table(sour_table_name)
-    data=raw.toPandas()
-    return(data)
-

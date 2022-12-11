@@ -6,7 +6,6 @@ import pandas as pd
 
 
 app = Flask(__name__)
-app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -14,13 +13,16 @@ logging.basicConfig(level=logging.DEBUG)
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
+    # Debugging reference notes
+    # app.logger.warning('testing warning log')
+    # app.logger.error('testing error log')
+    # app.logger.info('testing info log')
+    # return "Check your console"
 
     updatedDf = pd.DataFrame()
-
+    
     # Add Info button clicked
     if request.method == 'POST':
-
-        # if request.form['submit_button'] == "Add":
 
         # Get user one input
         userOneFName = request.form['userOneFName']
@@ -52,30 +54,24 @@ def home():
             if not userTwoFName or not userTwoLName or not userTwoStreet or not userTwoCity or not userTwoState or not userTwoZip:
                 return redirect(url_for('inputInvalid'))
 
+        updatedDf = pd.DataFrame()
+
         # Run first User through the model
         updatedDf = register.addDashboardUser(userOneFName, userOneLName, userOneStreet, userOneApt, (userOneCity +
-                                                                                                      ' ' + userOneState + ' ' + userOneZip), userOneCity, userOneState, userOneZip)
+                          ' ' + userOneState + ' ' + userOneZip), userOneCity, userOneState, userOneZip)
 
         # Run second user through the model(if applicable)
         if secUserChecked == 'Yes':
             updatedDf = register.addDashboardUser(userTwoFName, userTwoLName, userTwoStreet, userTwoApt, (userTwoCity +
-                                                                                                          ' ' + userTwoState + ' ' + userTwoZip), userTwoCity, userTwoState, userTwoZip)
-        return render_template('index.html', DATA_FRAME_OUTPUT = updatedDf.to_html())
+                                                                                      ' ' + userTwoState + ' ' + userTwoZip), userTwoCity, userTwoState, userTwoZip)
 
-        # if request.form['submit_button'] == "Remove":
-        #     # insert remove code here
-        #     # only need contact_id to remove user not sure how we want to display that
-        #     pass
+    #return (updatedDf.to_html())
 
-        # if request.form['submit_button'] == "Lookup":
-        #     # insert lookup code here
-        #     # only need contact_id to find user as well
-        #     pass
+    with open("./templates/index.html") as f:
+        html = f.read()
 
-    else:
-        with open("./templates/index.html") as f:
-            html = f.read()
-        return html
+    return html
+    #return render_template(html, DATA_FRAME_OUTPUT = updatedDf.to_html)
 
 
 @app.route('/invalid-input', methods=['GET'])
@@ -89,8 +85,11 @@ if __name__ == '__main__':
 
 # ------------------------------------------------------------
 # To run the app:
-#   python3 application.py (runs continuously until you kill w/ ctrl+C)
+#   python3 app.py (runs continuously until you kill w/ ctrl+C)
 #   http://<YOUR_IP or localhost>:5000
 #
 #   NOTE: You need to be running python 3.8.  You should make a virtual environment that uses python 3.8 and then use pip to install all of the necessary packages
 #           This requirement comes from SnowPark
+
+
+# Add, Update, Remove, Find?
