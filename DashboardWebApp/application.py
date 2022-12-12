@@ -3,9 +3,11 @@ import logging
 import sys
 from services import register
 import pandas as pd
+import dataframe_image as dfi
 
 
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -13,14 +15,13 @@ logging.basicConfig(level=logging.DEBUG)
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
-    # Debugging reference notes
-    # app.logger.warning('testing warning log')
-    # app.logger.error('testing error log')
-    # app.logger.info('testing info log')
-    # return "Check your console"
+
+    updatedDf = pd.DataFrame()
 
     # Add Info button clicked
     if request.method == 'POST':
+
+        # if request.form['submit_button'] == "Add":
 
         # Get user one input
         userOneFName = request.form['userOneFName']
@@ -52,20 +53,27 @@ def home():
             if not userTwoFName or not userTwoLName or not userTwoStreet or not userTwoCity or not userTwoState or not userTwoZip:
                 return redirect(url_for('inputInvalid'))
 
-        updatedDf = pd.DataFrame()
-
         # Run first User through the model
         updatedDf = register.addDashboardUser(userOneFName, userOneLName, userOneStreet, userOneApt, (userOneCity +
-                          ' ' + userOneState + ' ' + userOneZip), userOneCity, userOneState, userOneZip)
+                                                                                                      ' ' + userOneState + ' ' + userOneZip), userOneCity, userOneState, userOneZip)
 
         # Run second user through the model(if applicable)
         if secUserChecked == 'Yes':
             updatedDf = register.addDashboardUser(userTwoFName, userTwoLName, userTwoStreet, userTwoApt, (userTwoCity +
-                                                                                      ' ' + userTwoState + ' ' + userTwoZip), userTwoCity, userTwoState, userTwoZip)
+                                                                                                          ' ' + userTwoState + ' ' + userTwoZip), userTwoCity, userTwoState, userTwoZip)
+        return render_template('index.html', DATA_FRAME_OUTPUT = updatedDf.to_html())
 
-        return (updatedDf.to_html())
+        # if request.form['submit_button'] == "Remove":
+        #     # insert remove code here
+        #     # only need contact_id to remove user not sure how we want to display that
+        #     pass
 
-    elif request.method == 'GET':
+        # if request.form['submit_button'] == "Lookup":
+        #     # insert lookup code here
+        #     # only need contact_id to find user as well
+        #     pass
+
+    else:
         with open("./templates/index.html") as f:
             html = f.read()
         return html
@@ -74,6 +82,48 @@ def home():
 @app.route('/invalid-input', methods=['GET'])
 def inputInvalid():
     return "INVALID INPUT, THROW ERROR CODE 422"
+
+
+@app.route('/remove.html', methods=['POST', 'GET'])
+def remove():
+    newdf = pd.DataFrame()
+    if request.method == 'POST':
+        userContactID = request.form['usercontactID']
+
+        if not userContactID:
+            return redirect(url_for('inputInvalid'))
+
+        register.remove(userContactID)
+        newdf = register.removeDisplay()
+        return render_template('index.html', DATA_FRAME_OUTPUT = newdf.to_html())
+
+
+    if request.method == 'GET':
+        if request.path == '/remove.html':
+            with open("./templates/remove.html") as f:
+                html = f.read()
+            return html
+        
+         
+
+
+@app.route('/lookup.html', methods=['POST', 'GET'])
+def lookup():
+    newdf = pd.DataFrame()
+    if request.method == 'POST':
+        userContactID = request.form['usercontactID']
+
+        if not userContactID:
+            return redirect(url_for('inputInvalid'))
+
+        newdf = register.find(userContactID)
+        return render_template('index.html', DATA_FRAME_OUTPUT = newdf.to_html())
+
+    if request.method == 'GET':
+        if request.path == '/lookup.html':
+            with open("./templates/lookup.html") as f:
+                html = f.read()
+            return html
 
 
 if __name__ == '__main__':
