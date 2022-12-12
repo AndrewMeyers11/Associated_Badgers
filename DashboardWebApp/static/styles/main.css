@@ -24,29 +24,12 @@
 }
 
 .leftpane{
-    float: left;     
-    width: 38%;
     height: 100%;
     background-color: white;
-    border-radius: 7%;
-    border-width: 20px;
+    border-radius: 4%;
+    border-width: 27px;
     border-style: solid;
     border-color: #075719;
     padding: 1%;
    
-}
-
-
-.rightpane{
-    float: left; 
-    width: 60%;
-    height: 100%;
-    background-color: white;
-    border-radius: 7%;
-    border-width: 20px;
-    border-style: solid;
-    border-color: #075719;
-    padding: 1%;
-    align-content: center;
-    
 }

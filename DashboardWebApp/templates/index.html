@@ -25,7 +25,7 @@
     <div class="leftpane" style="margin: 1%">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Add</a>
+          <a class="nav-link active" aria-current="page" href="/">Add</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="remove.html">Remove</a>
@@ -36,15 +36,15 @@
       </ul>
 
         <h2> Insert customer information below: </h2>
-        <form method>
+        <form method = POST>
           <label for="name">Full Name:</label>
 
             <div class="form-row">
               <div class="col">
-                <input type="text" class="form-control" id="userFirst" placeholder="First name">
+                <input type="text" class="form-control" id="userFirst" name="userOneFName" placeholder="First name">
               </div>
               <div class="col">
-                <input type="text" class="form-control" id="userLast" placeholder="Last name">
+                <input type="text" class="form-control" id="userLast" name="userOneLName" placeholder="Last name">
               </div>
             </div>
 
@@ -117,11 +117,11 @@
               </div>
 
             </div>
-        </form>
         <br>
         <center>       
-           <button type="submit">Lookup Information</button>
+           <button type="submit">Add User</button>
         </center>
+      </form>
     </div>
     <script>
       const box = document.getElementById('hide');
@@ -139,14 +139,20 @@
         radio.addEventListener('click', handleRadioClick);
       });
     </script>
+
+    <br>
+
+    <center><h2>New Account Data Rendered:</h2></center>
    
-    <div class="rightpane">
-        <center>
-          <!--filler until model can be inputted-->
-          <img src="graph.png" id="graph" alt="AB visualization model" width="90%" height="100%">
-        </center>
-        <!-- Here is where the tableau feature would go-->
-    </div>
+   <div> {{ DATA_FRAME_OUTPUT|safe }} </div>
+
+   <!-- <script src="../static/scripts/validate.js" type="text/javascript"></script> -->
+
+   <!-- <div class="rightpane" style="text-align: center">
+         filler until model can be inputted
+         <img src="../static/graphs/graph.png" id="graph" alt="AB visualization model" width="90%" height="100%">
+        Here is where the tableau feature would go
+   </div> -->
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
