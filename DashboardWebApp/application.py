@@ -99,14 +99,12 @@ def remove():
 
         register.remove(userContactID)
         newdf = register.removeDisplay()
-        return render_template('index.html', DATA_FRAME_OUTPUT = newdf.to_html())
+        return render_template('remove.html', DATA_FRAME_OUTPUT = newdf.to_html())
 
 
     if request.method == 'GET':
         if request.path == '/remove.html':
-            with open("./templates/remove.html") as f:
-                html = f.read()
-            return html
+            return render_template('remove.html', DATA_FRAME_OUTPUT = newdf.to_html())
         
          
 
@@ -121,13 +119,11 @@ def lookup():
             return redirect(url_for('inputInvalid'))
 
         newdf = register.find(userContactID)
-        return render_template('index.html', DATA_FRAME_OUTPUT = newdf.to_html())
+        return render_template('lookup.html', DATA_FRAME_OUTPUT = newdf.to_html())
 
     if request.method == 'GET':
         if request.path == '/lookup.html':
-            with open("./templates/lookup.html") as f:
-                html = f.read()
-            return html
+            return render_template('lookup.html', DATA_FRAME_OUTPUT = newdf.to_html())
 
 
 if __name__ == '__main__':
