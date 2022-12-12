@@ -17,6 +17,7 @@ logging.basicConfig(level=logging.DEBUG)
 def home():
 
     updatedDf = pd.DataFrame()
+    userOutputDf = pd.DataFrame()
 
     # Add Info button clicked
     if request.method == 'POST':
@@ -57,11 +58,16 @@ def home():
         updatedDf = register.addDashboardUser(userOneFName, userOneLName, userOneStreet, userOneApt, (userOneCity +
                                                                                                       ' ' + userOneState + ' ' + userOneZip), userOneCity, userOneState, userOneZip)
 
+        userOutputDf = updatedDf.iloc[[-1]]
+
         # Run second user through the model(if applicable)
         if secUserChecked == 'Yes':
             updatedDf = register.addDashboardUser(userTwoFName, userTwoLName, userTwoStreet, userTwoApt, (userTwoCity +
                                                                                                           ' ' + userTwoState + ' ' + userTwoZip), userTwoCity, userTwoState, userTwoZip)
-        return render_template('index.html', DATA_FRAME_OUTPUT = updatedDf.to_html())
+            userOutputDf = updatedDf.iloc[[-2, -1]]
+        
+
+        return render_template('index.html', USER_OUTPUT = userOutputDf.to_html(), DATA_FRAME_OUTPUT = updatedDf.to_html())
 
         # if request.form['submit_button'] == "Remove":
         #     # insert remove code here
