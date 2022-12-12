@@ -74,9 +74,7 @@ def home():
         #     pass
 
     else:
-        with open("./templates/index.html") as f:
-            html = f.read()
-        return html
+        return render_template('index.html', DATA_FRAME_OUTPUT = updatedDf.to_html())
 
 
 @app.route('/invalid-input', methods=['GET'])
