@@ -118,7 +118,7 @@ def lookup():
         if not userContactID:
             return redirect(url_for('inputInvalid'))
 
-        newdf = register.find(userContactID)
+        newdf = register.find(userContactID)[0]
         return render_template('lookup.html', DATA_FRAME_OUTPUT = newdf.to_html())
 
     if request.method == 'GET':

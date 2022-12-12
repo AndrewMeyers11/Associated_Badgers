@@ -155,8 +155,10 @@ def update(contact_ID, firstName, lastName, addressLine1, addressLine2, addressL
 
 def find(contact_ID):
     session = Session.builder.configs(snowflake_conn_prop).create()
-    return [session.table(sour_table_name).toPandas()[str(int(contact_ID)-1)],
-            session.table(dest_table_name).toPandas()[str(int(contact_ID)-1)]]
+    raw = session.table(dest_table_name)
+
+    return [session.table(sour_table_name).toPandas().iloc[[int(contact_ID)-1]],
+            session.table(dest_table_name).toPandas().iloc[[int(contact_ID)-1]]]
 
 
 def addDashboardUser(firstName, lastName, addressLine1, addressLine2, addressLine3, city, state, zipCode):
