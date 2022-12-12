@@ -25,10 +25,10 @@
     <div class="leftpane" style="margin: 1%">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="index.html">Add</a>
+          <a class="nav-link" href="/">Add</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="remove.html">Remove</a>
+          <a class="nav-link active" aria-current="page" href = "remove.html">Remove</a>
         </li>
         <li class="nav-item">
           <a class="nav-link " href="lookup.html">Lookup</a>
@@ -36,93 +36,19 @@
       </ul>
 
         <h2> Insert customer information below: </h2>
-        <form method>
-          <label for="name">Full Name:</label>
+        <form method = POST>
+          <label for="name">ContactID:</label>
 
             <div class="form-row">
               <div class="col">
-                <input type="text" class="form-control" id="userFirst" placeholder="First name">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" id="userLast" placeholder="Last name">
+                <input type="text" class="form-control" id="usercontactID" name="usercontactID" placeholder="Contact ID">
               </div>
             </div>
-
-            <label>Address:</label>
-
-            <div class="form-row">
-                <div class="col">
-                  <input type="text" class="form-control" id="userAddress" placeholder="Street No./Name" name="userOneStreet">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Apt No.(if applicable)" name="userOneApt">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" id="userState" placeholder="City" name="userOneCity">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" id="userState" placeholder="State(abbrev.)" name="userOneState">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" id="userZipcode" placeholder="Zipcode" name="userOneZip">
-                </div>
-              </div>
-
-            <br>
-
-            <label>Is there a secondary user on account?</label>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="secondUser" id="secUserNo" value="No" checked>
-              <label class="form-check-label" for="exampleRadios1">
-                No
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="secondUser" id="secUserYes" value="Yes">
-              <label class="form-check-label" for="exampleRadios2">
-                Yes
-              </label>
-
-              <div id="hide" style="display: none;">
-                <label for="name">Full Name:</label>
-
-            <div class="form-row">
-              <div class="col">
-                <input type="text" class="form-control"  id="secUserFirst" placeholder="First name">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" id="secUserLast" placeholder="Last name">
-              </div>
-            </div>
-
-            <label>Address:</label>
-
-            <div class="form-row">
-                <div class="col">
-                  <input type="text" class="form-control" id="userAddress" placeholder="Street No./Name" name="userOneStreet">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Apt No.(if applicable)" name="userOneApt">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" id="userState" placeholder="City" name="userOneCity">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" id="userState" placeholder="State(abbrev.)" name="userOneState">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" id="userZipcode" placeholder="Zipcode" name="userOneZip">
-                </div>
-              </div>
-
-              </div>
-
-            </div>
-        </form>
         <br>
         <center>       
-           <button type="submit">Remove Information</button>
+           <button type="submit">Remove User</button>
         </center>
+      </form>
     </div>
     <script>
       const box = document.getElementById('hide');
