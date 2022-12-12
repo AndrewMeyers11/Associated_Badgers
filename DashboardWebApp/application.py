@@ -35,7 +35,7 @@ def home():
 
         # Check validity of the input for user one, redirect to err if faulty
         if not userOneFName or not userOneLName or not userOneStreet or not userOneCity or not userOneState or not userOneZip:
-            return redirect(url_for('inputInvalid'))
+            return render_template('index.html', DATA_FRAME_OUTPUT = "<center><h3 style=\"color:red;\">***INVALID INPUT***</h3></center>")
 
         # Check if second user is specified
         secUserChecked = request.form['secondUser']
@@ -52,7 +52,7 @@ def home():
 
             # Check validity of the input for user two, redirect to err if faulty
             if not userTwoFName or not userTwoLName or not userTwoStreet or not userTwoCity or not userTwoState or not userTwoZip:
-                return redirect(url_for('inputInvalid'))
+                return render_template('index.html', USER_OUTPUT = '', DATA_FRAME_OUTPUT = "<center><h3 style=\"color:red;\">***INVALID INPUT***</h3></center>")
 
         # Run first User through the model
         updatedDf = register.addDashboardUser(userOneFName, userOneLName, userOneStreet, userOneApt, (userOneCity +
@@ -80,12 +80,12 @@ def home():
         #     pass
 
     else:
-        return render_template('index.html', DATA_FRAME_OUTPUT = updatedDf.to_html())
+        return render_template('index.html', USER_OUTPUT = '', DATA_FRAME_OUTPUT = '')
 
 
 @app.route('/invalid-input', methods=['GET'])
 def inputInvalid():
-    return "INVALID INPUT, THROW ERROR CODE 422"
+    return "INVALID INPUT", 422
 
 
 @app.route('/remove.html', methods=['POST', 'GET'])
@@ -95,16 +95,20 @@ def remove():
         userContactID = request.form['usercontactID']
 
         if not userContactID:
-            return redirect(url_for('inputInvalid'))
+            return render_template('remove.html', DATA_FRAME_OUTPUT = "<center><h3 style=\"color:red;\">***INVALID INPUT***</h3></center>")
 
-        register.remove(userContactID)
+        try:
+            register.remove(userContactID)
+        except:
+            return render_template('remove.html', DATA_FRAME_OUTPUT = "<center><h3 style=\"color:red;\">***USER NOT FOUND***</h3></center>")
+
         newdf = register.removeDisplay()
         return render_template('remove.html', DATA_FRAME_OUTPUT = newdf.to_html())
 
 
     if request.method == 'GET':
         if request.path == '/remove.html':
-            return render_template('remove.html', DATA_FRAME_OUTPUT = newdf.to_html())
+            return render_template('remove.html', DATA_FRAME_OUTPUT = '')
         
          
 
@@ -116,14 +120,18 @@ def lookup():
         userContactID = request.form['usercontactID']
 
         if not userContactID:
-            return redirect(url_for('inputInvalid'))
+            return render_template('lookup.html', DATA_FRAME_OUTPUT = "<center><h3 style=\"color:red;\">***INVALID INPUT***</h3></center>")
 
-        newdf = register.find(userContactID)[0]
+        try:
+            newdf = register.find(userContactID)[0]
+        except:
+            return render_template('lookup.html', DATA_FRAME_OUTPUT = "<center><h3 style=\"color:red;\">***USER NOT FOUND***</h3></center>")
+
         return render_template('lookup.html', DATA_FRAME_OUTPUT = newdf.to_html())
 
     if request.method == 'GET':
         if request.path == '/lookup.html':
-            return render_template('lookup.html', DATA_FRAME_OUTPUT = newdf.to_html())
+            return render_template('lookup.html', DATA_FRAME_OUTPUT = '')
 
 
 if __name__ == '__main__':
